@@ -39,13 +39,13 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 	private BetterCharacterControl playerControl;
 	private CameraControl cameraControl;
 	private Vector3f walkDirection = new Vector3f();
-	private boolean left = false, right = false, forward = false, back = false;
+	private boolean keyDown_left = false, keyDown_right = false, keyDown_forward = false, keyDown_back = false;
+	private float move_left = 0.0f, move_right = 0.0f, move_forward = 0.0f, move_back = 0.0f;
 	private float look_left = 0.0f, look_right = 0.0f, look_up = 0.0f, look_down = 0.0f;
 
 	//Temporary vectors used on each frame.
 	//They here to avoid instanciating new vectors on each frame
 	private Vector3f camDir = new Vector3f();
-	private Vector3f newCamDir = new Vector3f();
 	private Vector3f camLeft = new Vector3f();
 	private Vector3f camUp = new Vector3f();
 	private Vector3f camLookDir = new Vector3f(camDir);
@@ -59,7 +59,7 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 
 	@Override
 	public void simpleInitApp() {
-		/**
+		/*
 		 * Set up Physics
 		 */
 		bulletAppState = new BulletAppState();
@@ -90,7 +90,6 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 		//player.rotate(0.0f, -3.0f, 0.0f);
 		player.setLocalTranslation(0.0f, 0.0f, -2.0f);
 
-		cameraControl = new CameraControl(cam);
 		cameraControl.setControlDir(CameraControl.ControlDirection.SpatialToCamera);
 		cameraControl.getCamera().setLocation(player.getLocalTranslation().add(0.0f, 5.0f, -10.0f));
 		cameraControl.getCamera().lookAt(player.getLocalTranslation(), Vector3f.UNIT_Y);
@@ -140,10 +139,15 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 		inputManager.addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
 		inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
 
-		inputManager.addListener(analogListener, "Left");
-		inputManager.addListener(analogListener, "Right");
-		inputManager.addListener(analogListener, "Forward");
-		inputManager.addListener(analogListener, "Back");
+		inputManager.addListener(analogListener, "Move_Left");
+		inputManager.addListener(analogListener, "Move_Right");
+		inputManager.addListener(analogListener, "Move_Forward");
+		inputManager.addListener(analogListener, "Move_Back");
+
+		inputManager.addListener(actionListener, "Move_Left");
+		inputManager.addListener(actionListener, "Move_Right");
+		inputManager.addListener(actionListener, "Move_Forward");
+		inputManager.addListener(actionListener, "Move_Back");
 		inputManager.addListener(actionListener, "Jump");
 
 		// Camera Look input-mappings
@@ -165,7 +169,15 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 	 * yet, we just keep track of the direction the user pressed.
 	 */
 	private ActionListener actionListener = (binding, isPressed, tpf) -> {
-		if (binding.equals("Jump")) {
+		if (binding.equals("Move_Left")) {
+			keyDown_left = isPressed;
+		} else if (binding.equals("Move_Right")) {
+			keyDown_right = isPressed;
+		} else if (binding.equals("Move_Forward")) {
+			keyDown_forward = isPressed;
+		} else if (binding.equals("Move_Back")) {
+			keyDown_back = isPressed;
+		} else if (binding.equals("Jump")) {
 			if (isPressed) {
 				playerControl.jump();
 				if (!channel.getAnimationName().equals("Jump")) {
@@ -183,22 +195,23 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 	};
 
 	private AnalogListener analogListener = (binding, value, tpf) -> {
-		if (binding.equals("Left")) {
-			left = isPressed;
-		} else if (binding.equals("Right")) {
-			right = isPressed;
-		} else if (binding.equals("Forward")) {
-			forward = isPressed;
-		} else if (binding.equals("Back")) {
-			back = isPressed;
-		} else if (binding.equals("Look_Left")) {
-			look_left += value*tpf;
+		if (binding.equals("Move_Left")) {
+			move_left -= value*tpf;
+		} else if (binding.equals("Move_Right")) {
+			move_right += value*tpf;
+		} else if (binding.equals("Move_Forward")) {
+			move_forward += value*tpf;
+		} else if (binding.equals("Move_Back")) {
+			move_back -= value*tpf;
+		}
+		if (binding.equals("Look_Left")) {
+			look_left -= value*tpf;
 		} else if (binding.equals("Look_Right")) {
 			look_right += value*tpf;
 		} else if (binding.equals("Look_Up")) {
 			look_up += value*tpf;
 		} else if (binding.equals("Look_Down")) {
-			look_down += value*tpf;
+			look_down -= value*tpf;
 		}
 	};
 
@@ -222,37 +235,45 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 	/**
 	 * This is the main event loop. We check in which
 	 * direction the player is walking by interpreting the camera direction
-	 * forward (camDir) and to the side (camLeft). We also make sure
+	 * move_forward (camDir) and to the side (camLeft). We also make sure
 	 * here that the camera moves with player.
 	 */
 	@Override
 	public void simpleUpdate(float tpf) {
 		camDir.set(cameraControl.getCamera().getDirection());
-		newCamDir.set(camDir);
 		camLeft.set(cameraControl.getCamera().getLeft());
 		camUp.set(cameraControl.getCamera().getUp());
 		walkDirection.set(0, 0, 0);
-		if (left) {
-			walkDirection.addLocal(camLeft);
+
+		if (keyDown_left) {
+			walkDirection.addLocal(camLeft.mult(move_left));
+		} else {
+			move_left = 0.0f;
 		}
-		if (right) {
-			walkDirection.addLocal(camLeft.negate());
+		if (keyDown_right) {
+			walkDirection.addLocal(camLeft.negate().mult(move_right));
+		} else {
+			move_right = 0.0f;
 		}
-		if (forward) {
-			walkDirection.addLocal(camDir);
+		if (keyDown_forward) {
+			walkDirection.addLocal(camDir.mult(move_forward));
+		} else {
+			move_forward = 0.0f;
 		}
-		if (back) {
-			walkDirection.addLocal(camDir.negate());
+		if (keyDown_back) {
+			walkDirection.addLocal(camDir.negate().mult(move_back));
+		} else {
+			move_back = 0.0f;
 		}
 
-		playerControl.setWalkDirection(walkDirection.multLocal(2.0f));
+		playerControl.setWalkDirection(walkDirection.mult(2.0f));
 
 		camLookDir.addLocal(camLeft.mult(look_left));
-		camLookDir.addLocal(camLeft.mult(look_right));
+		//camLookDir.addLocal(camLeft.mult(look_right));
 		camLookDir.addLocal(camUp.mult(look_up));
-		camLookDir.addLocal(camUp.mult(look_down));
+		//camLookDir.addLocal(camUp.mult(look_down));
 
-		cameraControl.getCamera().lookAt(camLookDir,camUp);
+		cameraControl.getCamera().lookAtDirection(camLookDir,camUp);
 		//cam.setLocation(player.getLocalTranslation().add(0.0f, 15.0f, 0.0f));
 	}
 
