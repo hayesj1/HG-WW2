@@ -90,6 +90,7 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 		//player.rotate(0.0f, -3.0f, 0.0f);
 		player.setLocalTranslation(0.0f, 0.0f, -2.0f);
 
+		cameraControl = new CameraControl(cam);
 		cameraControl.setControlDir(CameraControl.ControlDirection.SpatialToCamera);
 		cameraControl.getCamera().setLocation(player.getLocalTranslation().add(0.0f, 5.0f, -10.0f));
 		cameraControl.getCamera().lookAt(player.getLocalTranslation(), Vector3f.UNIT_Y);
@@ -99,7 +100,7 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 		//playerControl.setGravity(new Vector3f(Vector3f.UNIT_Y).mult(-1f*playerMass));
 
 		player.addControl(playerControl);
-		player.addControl(cameraControl);
+		//player.addControl(cameraControl);
 		rootNode.attachChild(player);
 
 		// We attach the scene and the player to the rootnode and the physics space,
@@ -269,11 +270,11 @@ public class Controller extends SimpleApplication implements AnimEventListener {
 		playerControl.setWalkDirection(walkDirection.mult(2.0f));
 
 		camLookDir.addLocal(camLeft.mult(look_left));
-		//camLookDir.addLocal(camLeft.mult(look_right));
+		camLookDir.addLocal(camLeft.mult(look_right));
 		camLookDir.addLocal(camUp.mult(look_up));
-		//camLookDir.addLocal(camUp.mult(look_down));
+		camLookDir.addLocal(camUp.mult(look_down));
 
-		cameraControl.getCamera().lookAtDirection(camLookDir,camUp);
+		cameraControl.getCamera().lookAtDirection(camLookDir, new Vector3f(0.0f , camLookDir.getY(), 0.0f));
 		//cam.setLocation(player.getLocalTranslation().add(0.0f, 15.0f, 0.0f));
 	}
 

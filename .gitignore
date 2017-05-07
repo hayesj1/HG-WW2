@@ -62,11 +62,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-.idea/compiler.xml
-.idea/workspace.xml
-.idea/copyright/profiles_settings.xml
-.idea/misc.xml
-
 *.j3*
 *.material
 *.scene
@@ -77,3 +72,7 @@ $RECYCLE.BIN/
 
 *.jpg
 *.png
+
+.idea/workspace.xml
+bin/*
+

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Class-Path: eventbus.jar bin\gluegen-rt.jar bin\j-ogg-oggd.jar bin\j-o
+ gg-vorbisd.jar bin\jbullet.jar bin\jglfont-core.jar bin\jinput.jar bi
+ n\jME3-android.jar bin\jME3-blender.jar bin\jME3-core.jar bin\jME3-de
+ sktop.jar bin\jME3-effects.jar bin\jME3-ios.jar bin\jME3-jbullet.jar 
+ bin\jME3-jogg.jar bin\jME3-jogl.jar bin\jME3-lwjgl.jar bin\jME3-netwo
+ rking.jar bin\jME3-niftygui.jar bin\jME3-plugins.jar bin\jME3-terrain
+ .jar bin\joal.jar bin\jogl-all.jar bin\launch4j.jar bin\lwjgl.jar bin
+ \nifty-default-controls.jar bin\nifty.jar bin\proguard.jar bin\retrac
+ e.jar bin\stack-alloc.jar bin\vecmath.jar bin\xmlpull-xpp3.jar bin\xs
+ tream.jar
+Main-Class: com.hayesj.worldwar2game.controller.Controller
+

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run" type="Application" factoryName="Application" singleton="true">
+  <configuration default="false" name="HG-WW2" type="Application" factoryName="Application" singleton="true">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <option name="MAIN_CLASS_NAME" value="com.hayesj.worldwar2game.controller.Controller" />
     <option name="VM_PARAMETERS" value="" />

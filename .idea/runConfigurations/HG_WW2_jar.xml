@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="HG-WW2.jar" type="JarApplication" factoryName="JAR Application" singleton="true">
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <option name="JAR_PATH" value="$PROJECT_DIR$/bin/artifacts/HG_WW2/HG-WW2.jar" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs />
+    <method>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="HG-WW2:jar" />
+      </option>
+    </method>
+  </configuration>
+</component>

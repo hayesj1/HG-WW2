@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="HG-WW2:jar">
+    <output-path>$PROJECT_DIR$/bin/artifacts/HG_WW2/</output-path>
+    <root id="root">
+      <element id="directory" name="bin">
+        <element id="library" level="application" name="JMonkeyEngine" />
+      </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/lib" />
+      <element id="archive" name="HG-WW2.jar">
+        <element id="module-output" name="HG-WW2" />
+      </element>
+    </root>
+  </artifact>
+</component>
