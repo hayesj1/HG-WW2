@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hg-ww2" default="all">
+  
+  
+  <property file="hg-ww2.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.ane"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.jmonkeyengine.classpath">
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/eventbus.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/gluegen-rt.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/j-ogg-oggd.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/j-ogg-vorbisd.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-android.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-blender.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-core.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-desktop.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-effects.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-ios.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-jbullet.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-jogg.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-jogl.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-lwjgl.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-networking.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-niftygui.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-plugins.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jME3-terrain.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jbullet.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jglfont-core.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jinput.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/joal.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/jogl-all.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/launch4j.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/lwjgl.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/nifty-default-controls.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/nifty.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/proguard.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/retrace.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/stack-alloc.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/vecmath.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/xmlpull-xpp3.jar"/>
+    <pathelement location="C:/Users/hayesj3/Documents/GitHub/global_lib/jme3/xstream.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_hg-ww2.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.hg-ww2, clean.artifact.hg-ww2:jar" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.hg-ww2" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.hg-ww2:jar" value="${basedir}/bin/artifacts/HG_WW2"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.HG-WW2.jar" value="${artifacts.temp.dir}/HG-WW2.jar"/>
+  </target>
+  
+  <target name="clean.artifact.hg-ww2:jar" description="clean HG-WW2:jar artifact output">
+    <delete dir="${artifact.output.hg-ww2:jar}"/>
+  </target>
+  
+  <target name="artifact.hg-ww2:jar" depends="init.artifacts, compile.module.hg-ww2" description="Build &#39;HG-WW2:jar&#39; artifact">
+    <mkdir dir="${artifact.output.hg-ww2:jar}"/>
+    <jar destfile="${temp.jar.path.HG-WW2.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${hg-ww2.output.dir}"/>
+    </jar>
+    <mkdir dir="${artifact.output.hg-ww2:jar}/bin"/>
+    <copy file="${basedir}/../global_lib/jme3/eventbus.jar" tofile="${artifact.output.hg-ww2:jar}/bin/eventbus.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/gluegen-rt.jar" tofile="${artifact.output.hg-ww2:jar}/bin/gluegen-rt.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/j-ogg-oggd.jar" tofile="${artifact.output.hg-ww2:jar}/bin/j-ogg-oggd.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/j-ogg-vorbisd.jar" tofile="${artifact.output.hg-ww2:jar}/bin/j-ogg-vorbisd.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jbullet.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jbullet.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jglfont-core.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jglfont-core.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jinput.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jinput.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-android.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-android.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-blender.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-blender.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-core.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-core.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-desktop.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-desktop.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-effects.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-effects.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-ios.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-ios.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-jbullet.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-jbullet.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-jogg.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-jogg.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-jogl.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-jogl.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-lwjgl.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-lwjgl.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-networking.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-networking.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-niftygui.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-niftygui.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-plugins.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-plugins.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jME3-terrain.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jME3-terrain.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/joal.jar" tofile="${artifact.output.hg-ww2:jar}/bin/joal.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/jogl-all.jar" tofile="${artifact.output.hg-ww2:jar}/bin/jogl-all.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/launch4j.jar" tofile="${artifact.output.hg-ww2:jar}/bin/launch4j.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/lwjgl.jar" tofile="${artifact.output.hg-ww2:jar}/bin/lwjgl.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/nifty-default-controls.jar" tofile="${artifact.output.hg-ww2:jar}/bin/nifty-default-controls.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/nifty.jar" tofile="${artifact.output.hg-ww2:jar}/bin/nifty.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/proguard.jar" tofile="${artifact.output.hg-ww2:jar}/bin/proguard.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/retrace.jar" tofile="${artifact.output.hg-ww2:jar}/bin/retrace.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/stack-alloc.jar" tofile="${artifact.output.hg-ww2:jar}/bin/stack-alloc.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/vecmath.jar" tofile="${artifact.output.hg-ww2:jar}/bin/vecmath.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/xmlpull-xpp3.jar" tofile="${artifact.output.hg-ww2:jar}/bin/xmlpull-xpp3.jar"/>
+    <copy file="${basedir}/../global_lib/jme3/xstream.jar" tofile="${artifact.output.hg-ww2:jar}/bin/xstream.jar"/>
+    <copy todir="${artifact.output.hg-ww2:jar}">
+      <fileset dir="${basedir}/lib"/>
+    </copy>
+    <copy file="${temp.jar.path.HG-WW2.jar}" tofile="${artifact.output.hg-ww2:jar}/HG-WW2.jar"/>
+    <ant antfile="" target="null" dir="">
+      <property name="artifact.output.path" value="${artifact.output.hg-ww2:jar}"/>
+    </ant>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.hg-ww2:jar" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

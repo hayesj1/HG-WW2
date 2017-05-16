@@ -9,6 +9,7 @@
       <element id="archive" name="HG-WW2.jar">
         <element id="module-output" name="HG-WW2" />
       </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>

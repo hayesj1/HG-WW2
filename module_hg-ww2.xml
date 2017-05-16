@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_hg-ww2" default="compile.module.hg-ww2">
+  <dirname property="module.hg-ww2.basedir" file="${ant.file.module_hg-ww2}"/>
+  
+  <property name="module.jdk.home.hg-ww2" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.hg-ww2" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.hg-ww2" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.hg-ww2" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="hg-ww2.output.dir" value="${module.hg-ww2.basedir}/bin/production/HG-WW2"/>
+  <property name="hg-ww2.testoutput.dir" value="${module.hg-ww2.basedir}/bin/test/HG-WW2"/>
+  
+  <path id="hg-ww2.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="hg-ww2.module.production.classpath">
+    <path refid="${module.jdk.classpath.hg-ww2}"/>
+    <path refid="library.jmonkeyengine.classpath"/>
+  </path>
+  
+  <path id="hg-ww2.runtime.production.module.classpath">
+    <pathelement location="${hg-ww2.output.dir}"/>
+    
+    <path refid="library.jmonkeyengine.classpath"/>
+  </path>
+  
+  <path id="hg-ww2.module.classpath">
+    <path refid="${module.jdk.classpath.hg-ww2}"/>
+    <pathelement location="${hg-ww2.output.dir}"/>
+    <path refid="library.jmonkeyengine.classpath"/>
+  </path>
+  
+  <path id="hg-ww2.runtime.module.classpath">
+    <pathelement location="${hg-ww2.testoutput.dir}"/>
+    <pathelement location="${hg-ww2.output.dir}"/>
+    
+    <path refid="library.jmonkeyengine.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.hg-ww2">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.hg-ww2">
+    <patternset refid="excluded.from.module.hg-ww2"/>
+  </patternset>
+  
+  <path id="hg-ww2.module.sourcepath">
+    <dirset dir="${module.hg-ww2.basedir}">
+      <include name="src/main/resources"/>
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="hg-ww2.module.test.sourcepath">
+    <dirset dir="${module.hg-ww2.basedir}">
+      <include name="src/test/resources"/>
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.hg-ww2" depends="compile.module.hg-ww2.production,compile.module.hg-ww2.tests" description="Compile module HG-WW2"/>
+  
+  <target name="compile.module.hg-ww2.production" depends="register.custom.compilers" description="Compile module HG-WW2; production classes">
+    <mkdir dir="${hg-ww2.output.dir}"/>
+    <javac2 destdir="${hg-ww2.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hg-ww2}/javac">
+      <compilerarg line="${compiler.args.hg-ww2}"/>
+      <bootclasspath refid="hg-ww2.module.bootclasspath"/>
+      <classpath refid="hg-ww2.module.production.classpath"/>
+      <src refid="hg-ww2.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hg-ww2"/>
+    </javac2>
+    
+    <copy todir="${hg-ww2.output.dir}">
+      <fileset dir="${module.hg-ww2.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.hg-ww2.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.hg-ww2.tests" depends="register.custom.compilers,compile.module.hg-ww2.production" description="compile module HG-WW2; test classes" unless="skip.tests">
+    <mkdir dir="${hg-ww2.testoutput.dir}"/>
+    <javac2 destdir="${hg-ww2.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hg-ww2}/javac">
+      <compilerarg line="${compiler.args.hg-ww2}"/>
+      <bootclasspath refid="hg-ww2.module.bootclasspath"/>
+      <classpath refid="hg-ww2.module.classpath"/>
+      <src refid="hg-ww2.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hg-ww2"/>
+    </javac2>
+    
+    <copy todir="${hg-ww2.testoutput.dir}">
+      <fileset dir="${module.hg-ww2.basedir}/src/test/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.hg-ww2.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.hg-ww2" description="cleanup module">
+    <delete dir="${hg-ww2.output.dir}"/>
+    <delete dir="${hg-ww2.testoutput.dir}"/>
+  </target>
+</project>
