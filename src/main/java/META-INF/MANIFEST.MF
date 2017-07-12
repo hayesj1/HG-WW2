@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Class-Path: bin\jme3-blender.jar bin\jme3-core.jar bin\jme3-desktop.ja
+ r bin\jme3-effects.jar bin\jme3-bullet.jar bin\jme3-bullet-native.jar
+  bin\jme3-jogg.jar bin\jme3-lwjgl.jar bin\jme3-networking.jar bin\jme
+ 3-niftygui.jar bin\jme3-plugins.jar bin\jme3-terrain.jar bin\jme3-tes
+ tdata.jar bin\jME3-ai.jar bin\jNavigation.jar bin\core.jar bin\dense6
+ 4.jar bin\denseC64.jar bin\eventbus.jar bin\jglfont-core.jar bin\j-og
+ g-all.jar bin\jsr305.jar bin\jutils.jar bin\simple.jar bin\vecmath.ja
+ r bin\xpp3.jar bin\nifty.jar bin\lwjgl.jar bin\jinput.jar bin\nifty-e
+ xamples.jar bin\nifty-style-black.jar bin\nifty-default-controls.jar 
+ bin\lwjgl-platform-natives-osx.jar bin\lwjgl-platform-natives-linux.j
+ ar bin\lwjgl-platform-natives-windows.jar bin\jinput-platform-natives
+ -osx.jar bin\jinput-platform-natives-linux.jar bin\jinput-platform-na
+ tives-windows.jar
+Main-Class: com.hayesj.worldwar2game.WW2Game
+

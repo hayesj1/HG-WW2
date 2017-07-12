@@ -1,15 +1,22 @@
 <component name="ArtifactManager">
   <artifact name="HG-WW2:jar">
-    <output-path>$PROJECT_DIR$/bin/artifacts/HG_WW2/</output-path>
+    <output-path>$PROJECT_DIR$/bin/artifacts/HG_WW2</output-path>
     <root id="root">
-      <element id="directory" name="bin">
-        <element id="library" level="application" name="JMonkeyEngine" />
-      </element>
-      <element id="dir-copy" path="$PROJECT_DIR$/lib" />
       <element id="archive" name="HG-WW2.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+        </element>
         <element id="module-output" name="HG-WW2" />
       </element>
-      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+      <element id="library" level="project" name="Natives" />
+      <element id="directory" name="bin">
+        <element id="library" level="application" name="jMonkeyEngine-3.1-AI" />
+        <element id="library" level="application" name="JMonkeyEngine-3.1" />
+        <element id="library" level="application" name="jMonkeyEngine-jNavigation" />
+      </element>
+      <element id="directory" name="assets">
+        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/HG-WW2/assets" />
+      </element>
     </root>
   </artifact>
 </component>

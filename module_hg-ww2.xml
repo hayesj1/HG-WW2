@@ -17,26 +17,30 @@
   
   <path id="hg-ww2.module.production.classpath">
     <path refid="${module.jdk.classpath.hg-ww2}"/>
-    <path refid="library.jmonkeyengine.classpath"/>
+    <path refid="library.jmonkeyengine-3.1-ai.classpath"/>
+    <path refid="library.jmonkeyengine-3.0.classpath"/>
   </path>
   
   <path id="hg-ww2.runtime.production.module.classpath">
     <pathelement location="${hg-ww2.output.dir}"/>
     
-    <path refid="library.jmonkeyengine.classpath"/>
+    <path refid="library.jmonkeyengine-3.1-ai.classpath"/>
+    <path refid="library.jmonkeyengine-3.0.classpath"/>
   </path>
   
   <path id="hg-ww2.module.classpath">
     <path refid="${module.jdk.classpath.hg-ww2}"/>
     <pathelement location="${hg-ww2.output.dir}"/>
-    <path refid="library.jmonkeyengine.classpath"/>
+    <path refid="library.jmonkeyengine-3.1-ai.classpath"/>
+    <path refid="library.jmonkeyengine-3.0.classpath"/>
   </path>
   
   <path id="hg-ww2.runtime.module.classpath">
     <pathelement location="${hg-ww2.testoutput.dir}"/>
     <pathelement location="${hg-ww2.output.dir}"/>
     
-    <path refid="library.jmonkeyengine.classpath"/>
+    <path refid="library.jmonkeyengine-3.1-ai.classpath"/>
+    <path refid="library.jmonkeyengine-3.0.classpath"/>
   </path>
   
   
@@ -52,6 +56,7 @@
     <dirset dir="${module.hg-ww2.basedir}">
       <include name="src/main/resources"/>
       <include name="src/main/java"/>
+      <include name="lib"/>
     </dirset>
   </path>
   
@@ -81,6 +86,10 @@
         <type type="file"/>
       </fileset>
       <fileset dir="${module.hg-ww2.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.hg-ww2.basedir}/lib">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
