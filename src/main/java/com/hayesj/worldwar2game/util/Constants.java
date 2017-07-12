@@ -12,9 +12,10 @@ import com.jme3.math.Quaternion;
  */
 public interface Constants {
 	float BASE_MOVE_SPEED = 0.25f;
-	float BASE_CAM_SPEED = 0.25f;
-	float MAX_MOVE_SPEED = BASE_MOVE_SPEED * 10.0f;
-	float MAX_CAM_SPEED = BASE_CAM_SPEED * 10.0f;
+	float MAX_MOVE_SPEED = BASE_MOVE_SPEED * 5.0f;
+
+	float MIN_CAM_SPEED = 0.75f;
+	float MAX_CAM_SPEED = 2.0f;
 
 	Quaternion isometricRotation = new Quaternion(new float[] {FastMath.QUARTER_PI, 0.0f, 0.0f});
 }

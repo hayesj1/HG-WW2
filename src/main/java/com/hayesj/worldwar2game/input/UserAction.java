@@ -6,23 +6,28 @@ package com.hayesj.worldwar2game.input;
  * @author Jacob Hayes
  */
 public enum UserAction {
-		MOVE_WEST(false),
-		MOVE_EAST(false),
-		MOVE_NORTH(false),
-		MOVE_SOUTH(false),
+	MOVE_WEST(false),
+	MOVE_EAST(false),
+	MOVE_NORTH(false),
+	MOVE_SOUTH(false),
 
-		ZOOM_IN(false),
-		ZOOM_OUT(false),
+	MOUSE_WEST(false),
+	MOUSE_EAST(false),
+	MOUSE_NORTH(false),
+	MOUSE_SOUTH(false),
 
-		SELECT(false),
-		EXECUTE(false);
+	ZOOM_IN(false),
+	ZOOM_OUT(false),
 
-		private boolean isActive;
+	SELECT(false),
+	EXECUTE(false);
 
-		public boolean isActive() { return isActive; }
-		public void setActive(boolean isActive) { this.isActive = isActive; }
+	private boolean isActive;
 
-		UserAction(boolean isActive) {
-			this.isActive = isActive;
-		}
+	public boolean isActive() { return isActive; }
+	public void setActive(boolean isActive) { this.isActive = isActive; }
+
+	UserAction(boolean isActive) {
+		this.isActive = isActive;
 	}
+}
